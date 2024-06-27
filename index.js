@@ -9,7 +9,7 @@ const app = express();
 const port = 3000;
 
 const shopify = new Shopify({
-    shopName: 'int-tns.myshopify.com',
+    shopName: process.env.SHOP_NAME,
     apiKey: process.env.API_KEY,
     password: process.env.API_SECRET
 });
@@ -29,7 +29,7 @@ app.use(express.json());
 // Middleware to parse JSON bodies
 app.use(
     cors({
-        origin: "https://www.tns.us"
+        origin: process.env.SHOP_NAME
     })
 );
 
