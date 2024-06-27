@@ -36,7 +36,6 @@ app.use(
 // Endpoint to check customer tags
 app.post('/check-customer-tags', async (req, res) => {
     const { customerEmail, tags } = req.body;
-    console.log(customerEmail, tags)
 
     if (!customerEmail || !tags) {
         return res.status(400).json({ error: 'Customer ID and tags are required' });
@@ -50,11 +49,8 @@ app.post('/check-customer-tags', async (req, res) => {
         const customerTags = customer[0].tags.split(', ').map(tag => tag.trim());
         const hasTags = tags.every(tag => customerTags.includes(tag));
 
-        console.log(customerTags, hasTags)
-
         res.json({ hasTags });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'An error occurred while fetching customer details' });
     }
 });
