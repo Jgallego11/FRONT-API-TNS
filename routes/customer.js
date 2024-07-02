@@ -3,7 +3,7 @@ const router = express.Router()
 const shopify = require('../shopifyClient')
 
 // Endpoint to check customer tags
-router.post('/hastags', async (req, res) => {
+router.get('/hastags', async (req, res) => {
     const { customerEmail, tags } = req.body;
 
     if (!customerEmail || !tags) {
